@@ -1,6 +1,8 @@
 module ZeevexReliability
   module OptimisticLockRetryable
     def self.included(base)
+      require 'active_record'
+      require 'active_record/base'
       base.class_eval do
         include InstanceMethods
       end
