@@ -14,7 +14,7 @@ module ZeevexReliability
     #     # your code here
     #   end
     #
-    def self.retry(options = {}, &block)
+    def self.retryable(options = {}, &block)
       opts = { :tries => 3, :on => StandardError }.merge(options)
 
       retry_exception, retries = opts[:on], opts[:tries]
