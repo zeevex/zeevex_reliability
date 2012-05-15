@@ -13,7 +13,7 @@ module ZeevexReliability
     # ActiveRecord::Base.  Otherwise, include it into AR::Base
     #
     def self.install(*clazzes)
-      clazzes = [ActiveRecord::Base] if (clazzes.nil || clazzes.empty?)
+      clazzes = [ActiveRecord::Base] if (clazzes.nil? || clazzes.empty?)
 
       clazzes.each do |clazz|
         clazz.send :include, ZeevexReliability::OptimisticLockRetryable
