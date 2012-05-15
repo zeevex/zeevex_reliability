@@ -8,6 +8,18 @@ module ZeevexReliability
       end
     end
 
+    #
+    # With no args, include 'with_optimistic_retry' into
+    # ActiveRecord::Base.  Otherwise, include it into AR::Base
+    #
+    def self.install(*clazzes)
+      clazzes = [ActiveRecord::Base] if (clazzes.nil || clazzes.empty?)
+
+      clazzes.each do |clazz|
+        clazz.send :include, ZeevexReliability::OptimisticLockRetryable
+      end
+    end
+
     module InstanceMethods
       # Options:
       # * :tries - Number of retries to perform. Defaults to 3.
